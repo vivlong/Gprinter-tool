@@ -32,7 +32,7 @@
 												// GPrinterHttpService
 												// 
 												this.CanPauseAndContinue = true;
-												this.ServiceName = "Service1";
+												this.ServiceName = "GPrinterHttpService";
 
 								}
 

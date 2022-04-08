@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceProcess;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,10 +28,14 @@ namespace GPrinterControl
 																if (status == ServiceControllerStatus.Running)
 																{
 																				pictureBox1.Image = Properties.Resources.icon_success;
+																				btnServiceStart.Enabled = false;
+																				btnServiceStop.Enabled = true;
 																}
 																else if (status == ServiceControllerStatus.Stopped)
 																{
 																				pictureBox1.Image = Properties.Resources.icon_warn;
+																				btnServiceStart.Enabled = true;
+																				btnServiceStop.Enabled = false;
 																}
 																else
 																{
@@ -59,14 +64,28 @@ namespace GPrinterControl
 
 								private void btnTestUSB_Click(object sender, EventArgs e)
 								{
-												if (printer.CheckPrinter())
+												try
 												{
-																printer.StartPrint("YS22RDA9R03K0001");
+																GPrinterHttp.Sbarco.PortEnumCount(0);
+																string acPortBuffer = "";
+																GPrinterHttp.Sbarco.PortEnumGet(0, 0, acPortBuffer);
+																if (!GPrinterHttp.Sbarco.PortOpen(acPortBuffer))
+																{
+																				MessageBox.Show("未检测到打印机", "连接打印机");
+																}
 												}
-												else
+												catch (Exception ex)
 												{
-																MessageBox.Show("未检测到打印机", "连接打印机");
+																MessageBox.Show(ex.Message, "打印机状态");
 												}
+												//if (printer.CheckPrinter())
+												//{
+												//				printer.StartPrint("YS22RDA9R03K0001");
+												//}
+												//else
+												//{
+												//				MessageBox.Show("未检测到打印机", "连接打印机");
+												//}
 								}
 
 								private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
@@ -106,6 +125,13 @@ namespace GPrinterControl
 																string status = printer.ReadDataFmUSB();
 																MessageBox.Show(status, "打印机状态");
 												}
+								}
+
+								private async void btnServiceUninstall_Click(object sender, EventArgs e)
+								{
+												await Task.Run(() => { service.UninstallService(); });
+												Thread.Sleep(1000);
+												StatusChangeHandle();
 								}
 				}
 }

@@ -61,7 +61,7 @@ namespace GPrinterControl
 												}
 								}
 
-								private void InstallService(string serviceFilePath)
+								public void InstallService(string serviceFilePath)
 								{
 												using (AssemblyInstaller installer = new AssemblyInstaller())
 												{
@@ -74,7 +74,7 @@ namespace GPrinterControl
 												}
 								}
 
-								private void UninstallService(string serviceFilePath)
+								public void UninstallService()
 								{
 												using (AssemblyInstaller installer = new AssemblyInstaller())
 												{

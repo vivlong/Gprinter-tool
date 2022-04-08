@@ -41,8 +41,10 @@
 												this.btnTestUSB = new System.Windows.Forms.Button();
 												this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
 												this.notifyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-												this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 												this.PrinterStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+												this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+												this.label4 = new System.Windows.Forms.Label();
+												this.btnServiceUninstall = new System.Windows.Forms.Button();
 												this.groupBox1.SuspendLayout();
 												((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 												this.groupBox2.SuspendLayout();
@@ -51,6 +53,8 @@
 												// 
 												// groupBox1
 												// 
+												this.groupBox1.Controls.Add(this.btnServiceUninstall);
+												this.groupBox1.Controls.Add(this.label4);
 												this.groupBox1.Controls.Add(this.pictureBox1);
 												this.groupBox1.Controls.Add(this.label3);
 												this.groupBox1.Controls.Add(this.label2);
@@ -88,7 +92,7 @@
 												// label2
 												// 
 												this.label2.AutoSize = true;
-												this.label2.Location = new System.Drawing.Point(345, 39);
+												this.label2.Location = new System.Drawing.Point(238, 39);
 												this.label2.Name = "label2";
 												this.label2.Size = new System.Drawing.Size(53, 12);
 												this.label2.TabIndex = 3;
@@ -97,7 +101,7 @@
 												// label1
 												// 
 												this.label1.AutoSize = true;
-												this.label1.Location = new System.Drawing.Point(204, 39);
+												this.label1.Location = new System.Drawing.Point(123, 39);
 												this.label1.Name = "label1";
 												this.label1.Size = new System.Drawing.Size(53, 12);
 												this.label1.TabIndex = 2;
@@ -106,7 +110,7 @@
 												// btnServiceStop
 												// 
 												this.btnServiceStop.Image = global::GPrinterControl.Properties.Resources.full_stop_hover;
-												this.btnServiceStop.Location = new System.Drawing.Point(404, 20);
+												this.btnServiceStop.Location = new System.Drawing.Point(297, 20);
 												this.btnServiceStop.Name = "btnServiceStop";
 												this.btnServiceStop.Size = new System.Drawing.Size(50, 50);
 												this.btnServiceStop.TabIndex = 1;
@@ -116,7 +120,7 @@
 												// btnServiceStart
 												// 
 												this.btnServiceStart.Image = global::GPrinterControl.Properties.Resources.full_play_hover;
-												this.btnServiceStart.Location = new System.Drawing.Point(263, 20);
+												this.btnServiceStart.Location = new System.Drawing.Point(182, 20);
 												this.btnServiceStart.Name = "btnServiceStart";
 												this.btnServiceStart.Size = new System.Drawing.Size(50, 50);
 												this.btnServiceStart.TabIndex = 0;
@@ -157,21 +161,40 @@
             this.PrinterStatusToolStripMenuItem,
             this.ExitToolStripMenuItem});
 												this.notifyMenu.Name = "notifyMenu";
-												this.notifyMenu.Size = new System.Drawing.Size(181, 70);
-												// 
-												// ExitToolStripMenuItem
-												// 
-												this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-												this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-												this.ExitToolStripMenuItem.Text = "退出";
-												this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+												this.notifyMenu.Size = new System.Drawing.Size(137, 48);
 												// 
 												// PrinterStatusToolStripMenuItem
 												// 
 												this.PrinterStatusToolStripMenuItem.Name = "PrinterStatusToolStripMenuItem";
-												this.PrinterStatusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+												this.PrinterStatusToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
 												this.PrinterStatusToolStripMenuItem.Text = "打印机状态";
 												this.PrinterStatusToolStripMenuItem.Click += new System.EventHandler(this.PrinterStatusToolStripMenuItem_Click);
+												// 
+												// ExitToolStripMenuItem
+												// 
+												this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+												this.ExitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+												this.ExitToolStripMenuItem.Text = "退出";
+												this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+												// 
+												// label4
+												// 
+												this.label4.AutoSize = true;
+												this.label4.Location = new System.Drawing.Point(353, 39);
+												this.label4.Name = "label4";
+												this.label4.Size = new System.Drawing.Size(53, 12);
+												this.label4.TabIndex = 6;
+												this.label4.Text = "卸载服务";
+												// 
+												// btnServiceUninstall
+												// 
+												this.btnServiceUninstall.Image = global::GPrinterControl.Properties.Resources.icon_warn;
+												this.btnServiceUninstall.Location = new System.Drawing.Point(404, 20);
+												this.btnServiceUninstall.Name = "btnServiceUninstall";
+												this.btnServiceUninstall.Size = new System.Drawing.Size(50, 50);
+												this.btnServiceUninstall.TabIndex = 7;
+												this.btnServiceUninstall.UseVisualStyleBackColor = true;
+												this.btnServiceUninstall.Click += new System.EventHandler(this.btnServiceUninstall_Click);
 												// 
 												// MainForm
 												// 
@@ -210,6 +233,8 @@
 								private System.Windows.Forms.ContextMenuStrip notifyMenu;
 								private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
 								private System.Windows.Forms.ToolStripMenuItem PrinterStatusToolStripMenuItem;
+								private System.Windows.Forms.Label label4;
+								private System.Windows.Forms.Button btnServiceUninstall;
 				}
 }
 
