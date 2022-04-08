@@ -66,13 +66,26 @@ namespace GPrinterControl
 								{
 												try
 												{
-																GPrinterHttp.Sbarco.PortEnumCount(0);
-																string acPortBuffer = "";
-																GPrinterHttp.Sbarco.PortEnumGet(0, 0, acPortBuffer);
-																if (!GPrinterHttp.Sbarco.PortOpen(acPortBuffer))
+																int nPortCount = GPrinterHttp.Sbarco.PortEnumCount(0);
+																if(nPortCount > 0)
+																{
+																				string acPortBuffer = "";
+																				GPrinterHttp.Sbarco.PortEnumGet(0, 0, acPortBuffer);
+																				if (!GPrinterHttp.Sbarco.PortOpen(acPortBuffer))
+																				{
+																								MessageBox.Show("未检测到打印机", "连接打印机");
+																				} else
+																				{
+																								GPrinterHttp.Sbarco.SetMeasurement(1, 0); // inchs
+																								GPrinterHttp.Sbarco.PrintText(1.1f, 0.2f, 0, 1, 1, 1, false, 14, "Print from USB");
+																								GPrinterHttp.Sbarco.PrintLabel(1, 1, false);
+																								GPrinterHttp.Sbarco.PortClose();
+																				}
+																}
+																else
 																{
 																				MessageBox.Show("未检测到打印机", "连接打印机");
-																}
+																}																
 												}
 												catch (Exception ex)
 												{
@@ -80,7 +93,7 @@ namespace GPrinterControl
 												}
 												//if (printer.CheckPrinter())
 												//{
-												//				printer.StartPrint("YS22RDA9R03K0001");
+												//				printer.StartPrint("DEMO");
 												//}
 												//else
 												//{
