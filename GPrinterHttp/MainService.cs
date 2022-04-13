@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.ServiceProcess;
 using System.Text;
+using System.Collections.Generic;
 
 namespace GPrinterHttp
 {
@@ -64,7 +65,7 @@ namespace GPrinterHttp
 																																StreamReader reader = new StreamReader(stream, Encoding.UTF8);
 																																content = reader.ReadToEnd();
 																																Logger.Debug("接收数据:" + content);
-																																handleAction(content);
+																															//	handleAction(content);
 																												}
 																												break;
 																								case "GET":
@@ -73,9 +74,42 @@ namespace GPrinterHttp
 																																if (data.Count > 0)
 																																{
 																																				var ds = data.AllKeys.ToDictionary(k => k, k => data.GetValues(k));
-																																				content = JsonConvert.SerializeObject(ds);
-																																				Logger.Debug("接收数据:" + content);
-																																				handleAction(content);
+
+																																				string[] outType;
+																																			
+																																				ds.TryGetValue("type", out outType);
+																																			
+
+																																				if (outType[0] == "bei")
+																																				{
+																																								string[] outModel;
+																																								string[] outBno;
+																																								ds.TryGetValue("model", out outModel);
+																																								ds.TryGetValue("bno", out outBno);
+																																								handleAction(outModel[0], outBno[0]);
+																																				}
+																																				if (outType[0] == "lunzu")
+																																				{
+																																								string[] outLetno;
+																																								string[] outModel;
+																																								string[] outQty;
+																																								string[] outPairl;
+																																								string[] outFrontsn;
+																																								string[] outFrontn;
+																																								string[] outRearn;
+																																								string[] outRearsn;
+																																								ds.TryGetValue("letno", out outLetno);
+																																								ds.TryGetValue("model", out outModel);
+																																								ds.TryGetValue("qty", out outQty);
+																																								ds.TryGetValue("pair", out outPairl);
+																																								ds.TryGetValue("frontsn", out outFrontsn);
+																																								ds.TryGetValue("frontn", out outFrontn);
+																																								ds.TryGetValue("rearn", out outRearn);
+																																								ds.TryGetValue("rearsn", out outRearsn);
+
+																																								printer.PrintLunZu( outLetno[0],  outModel[0],  outQty[0],  outPairl[0],  outFrontsn[0],  outFrontn[0],  outRearn[0],  outRearsn[0]);
+																																				}
+																																				Logger.Debug("outStr接收数据:" + outType[0]);
 																																}
 																												}
 																												break;
@@ -99,14 +133,12 @@ namespace GPrinterHttp
 												}
 								}
 
-								private void handleAction(string content)
+								private void handleAction(string model, string bno)
 								{
 												// TODO
 												// Call Printer
-												if (printer.CheckPrinter())
-												{
-																printer.StartPrint(content);
-												}
+												printer.PrintBeiNo(model, bno);
+											
 								}
 				}
 }
