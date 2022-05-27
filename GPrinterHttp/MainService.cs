@@ -62,7 +62,10 @@ namespace GPrinterHttp
 																												{
 																																Stream stream = context.Request.InputStream;
 																																StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-																																content = reader.ReadToEnd();
+																																string rd = reader.ReadToEnd();
+																																var ds = JsonConvert.DeserializeObject(rd);
+																																//
+																																content = JsonConvert.SerializeObject(ds);
 																																Logger.Debug("接收数据:" + content);
 																																handleAction(content);
 																												}
@@ -72,8 +75,9 @@ namespace GPrinterHttp
 																																var data = request.QueryString;
 																																if (data.Count > 0)
 																																{
-																																				var ds = data.AllKeys.ToDictionary(k => k, k => data.GetValues(k));
+																																				var ds = data.AllKeys.ToDictionary(k => k, k => data.Get(k));
 																																				content = JsonConvert.SerializeObject(ds);
+																																				//
 																																				Logger.Debug("接收数据:" + content);
 																																				handleAction(content);
 																																}
