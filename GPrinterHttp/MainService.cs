@@ -75,11 +75,27 @@ namespace GPrinterHttp
 																																var data = request.QueryString;
 																																if (data.Count > 0)
 																																{
-																																				var ds = data.AllKeys.ToDictionary(k => k, k => data.Get(k));
-																																				content = JsonConvert.SerializeObject(ds);
-																																				//
-																																				Logger.Debug("接收数据:" + content);
-																																				handleAction(content);
+																																	var ds = data.AllKeys.ToDictionary(k => k, k => data.Get(k));
+																																	content = JsonConvert.SerializeObject(ds);
+																																	//
+																																	Logger.Debug("接收数据:" + content);
+																																	string[] outType;
+
+																																	ds.TryGetValue("type", out outType);
+																																
+																																	if (outType[0] == "sn")
+																																	{
+																																		Logger.Debug("outType:" + outType[0]);
+																																		
+																																		string[] outModel;
+																																		string[] outSn;
+																																		ds.TryGetValue("model", out outModel);
+																																		ds.TryGetValue("sn", out outSn);
+																																		printer.PrintSnBySkd(outModel[0], outSn[0]);
+																																		Logger.Debug("outModel:" + outModel[0]);
+																																		Logger.Debug("outSn:" + outSn[0]);
+																																				
+																																	}
 																																}
 																												}
 																												break;
