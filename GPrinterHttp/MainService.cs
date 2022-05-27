@@ -25,7 +25,10 @@ namespace GPrinterHttp
 												{
 																httpListener = new HttpListener();
 																httpListener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
+																httpListener.Prefixes.Add("http://localhost:8848/");
 																httpListener.Prefixes.Add("http://127.0.0.1:8848/");
+																httpListener.Prefixes.Add("http://+:8848/");
+																httpListener.Prefixes.Add("http://*:8848/");
 																httpListener.Start();
 																Logger.Debug("服务端已启动:" + DateTime.Now.ToString());
 																httpListener.BeginGetContext(ListenerHandle, httpListener);
