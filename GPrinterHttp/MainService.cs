@@ -124,18 +124,16 @@ namespace GPrinterHttp
 												// Call Printer
 												if (printer.CheckPrinter())
 												{
-																string outType;
-																ds.TryGetValue("type", out outType);
-																if (outType == "sn")
+																string modType;
+																ds.TryGetValue("type", out modType);
+																//Logger.Debug("outType:" + modType);
+																if (modType == "sn")
 																{
-																				Logger.Debug("outType:" + outType);
 																				string outModel;
-																				string outSn;
+																				string modCode;
 																				ds.TryGetValue("model", out outModel);
-																				ds.TryGetValue("sn", out outSn);
-																				printer.PrintSnBySkd(outModel, outSn);
-																				Logger.Debug("outModel:" + outModel);
-																				Logger.Debug("outSn:" + outSn);
+																				ds.TryGetValue("code", out modCode);
+																				printer.PrintByType(outModel, modCode);
 																}
 												}
 								}
