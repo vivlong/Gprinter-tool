@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -55,7 +56,9 @@ namespace GPrinterHttp
 																				httpListener.BeginGetContext(ListenerHandle, httpListener);
 																				HttpListenerContext context = httpListener.EndGetContext(result);
 																				HttpListenerRequest request = context.Request;
-																				string content = "";
+																				Dictionary<string, string> rst = new Dictionary<string, string>();
+																				rst.Add("ret", "200");
+																				rst.Add("msg", "done");
 																				switch (request.HttpMethod)
 																				{
 																								case "POST":
@@ -64,10 +67,10 @@ namespace GPrinterHttp
 																																StreamReader reader = new StreamReader(stream, Encoding.UTF8);
 																																string rd = reader.ReadToEnd();
 																																var ds = JsonConvert.DeserializeObject(rd);
-																																//
-																																content = JsonConvert.SerializeObject(ds);
+																																var content = JsonConvert.SerializeObject(ds);
+																																rst.Add("data", content);
 																																Logger.Debug("接收数据:" + content);
-																																handleAction(content);
+																																handlePostAction(content);
 																												}
 																												break;
 																								case "GET":
@@ -75,27 +78,11 @@ namespace GPrinterHttp
 																																var data = request.QueryString;
 																																if (data.Count > 0)
 																																{
-																																	var ds = data.AllKeys.ToDictionary(k => k, k => data.Get(k));
-																																	content = JsonConvert.SerializeObject(ds);
-																																	//
-																																	Logger.Debug("接收数据:" + content);
-																																	string[] outType;
-
-																																	ds.TryGetValue("type", out outType);
-																																
-																																	if (outType[0] == "sn")
-																																	{
-																																		Logger.Debug("outType:" + outType[0]);
-																																		
-																																		string[] outModel;
-																																		string[] outSn;
-																																		ds.TryGetValue("model", out outModel);
-																																		ds.TryGetValue("sn", out outSn);
-																																		printer.PrintSnBySkd(outModel[0], outSn[0]);
-																																		Logger.Debug("outModel:" + outModel[0]);
-																																		Logger.Debug("outSn:" + outSn[0]);
-																																				
-																																	}
+																																				var ds = data.AllKeys.ToDictionary(k => k, k => data.Get(k));
+																																				var content = JsonConvert.SerializeObject(ds);
+																																				rst.Add("data", content);
+																																				Logger.Debug("接收数据:" + content);
+																																				handleGetAction(ds);
 																																}
 																												}
 																												break;
@@ -107,7 +94,7 @@ namespace GPrinterHttp
 																				response.AppendHeader("Content-Type", "application/json;charset=UTF-8");
 																				using (StreamWriter writer = new StreamWriter(response.OutputStream, Encoding.UTF8))
 																				{
-																								writer.Write(content);
+																								writer.Write(rst);
 																								writer.Close();
 																								response.Close();
 																				}
@@ -119,13 +106,34 @@ namespace GPrinterHttp
 												}
 								}
 
-								private void handleAction(string content)
+								private void handlePostAction(string content)
 								{
-												// TODO
 												// Call Printer
 												if (printer.CheckPrinter())
 												{
 																printer.StartPrint(content);
+												}
+								}
+
+
+								private void handleGetAction(Dictionary<string, string> ds)
+								{
+												// Call Printer
+												if (printer.CheckPrinter())
+												{
+																string outType;
+																ds.TryGetValue("type", out outType);
+																if (outType == "sn")
+																{
+																				Logger.Debug("outType:" + outType);
+																				string outModel;
+																				string outSn;
+																				ds.TryGetValue("model", out outModel);
+																				ds.TryGetValue("sn", out outSn);
+																				printer.PrintSnBySkd(outModel, outSn);
+																				Logger.Debug("outModel:" + outModel);
+																				Logger.Debug("outSn:" + outSn);
+																}
 												}
 								}
 				}
