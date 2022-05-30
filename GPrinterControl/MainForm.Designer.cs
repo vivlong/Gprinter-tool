@@ -31,6 +31,8 @@
 												this.components = new System.ComponentModel.Container();
 												System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 												this.groupBox1 = new System.Windows.Forms.GroupBox();
+												this.btnServiceUninstall = new System.Windows.Forms.Button();
+												this.label4 = new System.Windows.Forms.Label();
 												this.pictureBox1 = new System.Windows.Forms.PictureBox();
 												this.label3 = new System.Windows.Forms.Label();
 												this.label2 = new System.Windows.Forms.Label();
@@ -43,8 +45,7 @@
 												this.notifyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 												this.PrinterStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 												this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-												this.label4 = new System.Windows.Forms.Label();
-												this.btnServiceUninstall = new System.Windows.Forms.Button();
+												this.btnSetPageHome = new System.Windows.Forms.Button();
 												this.groupBox1.SuspendLayout();
 												((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 												this.groupBox2.SuspendLayout();
@@ -67,6 +68,25 @@
 												this.groupBox1.TabIndex = 0;
 												this.groupBox1.TabStop = false;
 												this.groupBox1.Text = "服务";
+												// 
+												// btnServiceUninstall
+												// 
+												this.btnServiceUninstall.Image = global::GPrinterControl.Properties.Resources.icon_warn;
+												this.btnServiceUninstall.Location = new System.Drawing.Point(404, 20);
+												this.btnServiceUninstall.Name = "btnServiceUninstall";
+												this.btnServiceUninstall.Size = new System.Drawing.Size(50, 50);
+												this.btnServiceUninstall.TabIndex = 7;
+												this.btnServiceUninstall.UseVisualStyleBackColor = true;
+												this.btnServiceUninstall.Click += new System.EventHandler(this.btnServiceUninstall_Click);
+												// 
+												// label4
+												// 
+												this.label4.AutoSize = true;
+												this.label4.Location = new System.Drawing.Point(353, 39);
+												this.label4.Name = "label4";
+												this.label4.Size = new System.Drawing.Size(53, 12);
+												this.label4.TabIndex = 6;
+												this.label4.Text = "卸载服务";
 												// 
 												// pictureBox1
 												// 
@@ -129,6 +149,7 @@
 												// 
 												// groupBox2
 												// 
+												this.groupBox2.Controls.Add(this.btnSetPageHome);
 												this.groupBox2.Controls.Add(this.btnTestUSB);
 												this.groupBox2.Location = new System.Drawing.Point(12, 96);
 												this.groupBox2.Name = "groupBox2";
@@ -177,24 +198,15 @@
 												this.ExitToolStripMenuItem.Text = "退出";
 												this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
 												// 
-												// label4
+												// btnSetPageHome
 												// 
-												this.label4.AutoSize = true;
-												this.label4.Location = new System.Drawing.Point(353, 39);
-												this.label4.Name = "label4";
-												this.label4.Size = new System.Drawing.Size(53, 12);
-												this.label4.TabIndex = 6;
-												this.label4.Text = "卸载服务";
-												// 
-												// btnServiceUninstall
-												// 
-												this.btnServiceUninstall.Image = global::GPrinterControl.Properties.Resources.icon_warn;
-												this.btnServiceUninstall.Location = new System.Drawing.Point(404, 20);
-												this.btnServiceUninstall.Name = "btnServiceUninstall";
-												this.btnServiceUninstall.Size = new System.Drawing.Size(50, 50);
-												this.btnServiceUninstall.TabIndex = 7;
-												this.btnServiceUninstall.UseVisualStyleBackColor = true;
-												this.btnServiceUninstall.Click += new System.EventHandler(this.btnServiceUninstall_Click);
+												this.btnSetPageHome.Location = new System.Drawing.Point(199, 20);
+												this.btnSetPageHome.Name = "btnSetPageHome";
+												this.btnSetPageHome.Size = new System.Drawing.Size(106, 23);
+												this.btnSetPageHome.TabIndex = 1;
+												this.btnSetPageHome.Text = "打印纸归位";
+												this.btnSetPageHome.UseVisualStyleBackColor = true;
+												this.btnSetPageHome.Click += new System.EventHandler(this.btnSetPageHome_Click);
 												// 
 												// MainForm
 												// 
@@ -235,6 +247,7 @@
 								private System.Windows.Forms.ToolStripMenuItem PrinterStatusToolStripMenuItem;
 								private System.Windows.Forms.Label label4;
 								private System.Windows.Forms.Button btnServiceUninstall;
+								private System.Windows.Forms.Button btnSetPageHome;
 				}
 }
 

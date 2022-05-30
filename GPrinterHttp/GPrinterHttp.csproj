@@ -69,6 +69,15 @@
   <PropertyGroup>
     <ManifestKeyFile>gpHttp.pfx</ManifestKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="libUsbContorl">
       <HintPath>C:\Users\Administrator\Downloads\SDK（开发包）适用于PC，安卓，IOS，微信小程序\C#\libUsbContorl.dll</HintPath>
@@ -138,6 +147,7 @@
     <None Include="App.config" />
     <None Include="gpHttp.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">

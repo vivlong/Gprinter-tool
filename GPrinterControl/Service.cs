@@ -76,11 +76,14 @@ namespace GPrinterControl
 
 								public void UninstallService()
 								{
-												using (AssemblyInstaller installer = new AssemblyInstaller())
+												if (IsServiceExisted())
 												{
-																installer.UseNewContext = true;
-																installer.Path = serviceFilePath;
-																installer.Uninstall(null);
+																using (AssemblyInstaller installer = new AssemblyInstaller())
+																{
+																				installer.UseNewContext = true;
+																				installer.Path = serviceFilePath;
+																				installer.Uninstall(null);
+																}
 												}
 								}
 				}

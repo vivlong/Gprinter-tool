@@ -145,13 +145,30 @@ namespace GPrinterHttp
 												}
 								}
 
+								public void ResetPrinter()
+								{
+												try
+												{
+																if (NewUsb.USBState)
+																{
+																				SetBaseConfig();
+																				SendData2USB("HOME\r\n"); //Size>=30mm 在使用含有间隙或黑标的标签纸时，若不能确定第一张标签纸是否在正确打印位置时，此指令可将标签纸向前推送至下一张标签纸的起点开始打印
+																				SendData2USB("EOP\r\n");
+																				NewUsb.CloseUSBPort();
+																}
+												}
+												catch (Exception ex)
+												{
+																Logger.Error(ex.Message);
+												}
+								}
+
 								public void PrintByType(string type, string code)
 								{
 												try
 												{
 																if (NewUsb.USBState)
 																{
-																				//Logger.Debug("PrintSn1" + model + "///" + sn);
 																				SetBaseConfig();
 																				SendData2USB($"BARCODE 105,25,\"128\",60,1,0,2,2,\"{code}\"\r\n"); //一维条码
 																				SendData2USB("PRINT 1\r\n"); // 打印出存储于影像缓冲区内的数据(指定打印的份数, 每张标签需重复打印的张数) 1~65535
@@ -170,7 +187,6 @@ namespace GPrinterHttp
 												SendData2USB("SIZE 65 mm,15 mm\r\n"); //标签尺寸(宽度,长度) 使用公制单位，在单位与数字之间必须添加一个空格
 												SendData2USB("GAP 2 mm,0 mm\r\n"); //两张卷标纸间的垂直间距距离(两标签纸中间的垂直距离, 垂直间距偏移)
 												SendData2USB("CLS\r\n"); //清除图像缓冲区（image buffer)的数据
-																																					//SendData2USB("HOME\r\n"); //Size>=30mm 在使用含有间隙或黑标的标签纸时，若不能确定第一张标签纸是否在正确打印位置时，此指令可将标签纸向前推送至下一张标签纸的起点开始打印
 												SendData2USB("DENSITY 8\r\n"); //打印浓度(0~15)
 												SendData2USB("DIRECTION 0\r\n"); //定义打印时出纸和打印字体的方向
 												SendData2USB("REFERENCE 0,0\r\n"); //定义卷标的参考坐标原点(水平方向的坐标位置dot, 垂直方向的坐标位置dot)

@@ -41,6 +41,11 @@ namespace GPrinterControl
 																{
 																				pictureBox1.Image = Properties.Resources.icon_info;
 																}
+																btnServiceUninstall.Enabled = true;
+												}
+												else
+												{
+																btnServiceUninstall.Enabled = false;
 												}
 								}
 
@@ -58,6 +63,13 @@ namespace GPrinterControl
 												btnServiceStart.Enabled = true;
 												btnServiceStop.Enabled = false;
 												await Task.Run(() => { service.StopService(); });
+												Thread.Sleep(1000);
+												StatusChangeHandle();
+								}
+
+								private async void btnServiceUninstall_Click(object sender, EventArgs e)
+								{
+												await Task.Run(() => { service.UninstallService(); });
 												Thread.Sleep(1000);
 												StatusChangeHandle();
 								}
@@ -91,14 +103,14 @@ namespace GPrinterControl
 												//{
 												//				MessageBox.Show(ex.Message, "打印机状态");
 												//}
-												//if (printer.CheckPrinter())
-												//{
-												//				printer.StartPrint("DEMO");
-												//}
-												//else
-												//{
-												//				MessageBox.Show("未检测到打印机", "连接打印机");
-												//}
+												if (printer.CheckPrinter())
+												{
+																printer.StartPrint("DEMO");
+												}
+												else
+												{
+																MessageBox.Show("未检测到打印机", "连接打印机");
+												}
 								}
 
 								private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
@@ -140,11 +152,16 @@ namespace GPrinterControl
 												}
 								}
 
-								private async void btnServiceUninstall_Click(object sender, EventArgs e)
+								private void btnSetPageHome_Click(object sender, EventArgs e)
 								{
-												await Task.Run(() => { service.UninstallService(); });
-												Thread.Sleep(1000);
-												StatusChangeHandle();
+												if (printer.CheckPrinter())
+												{
+																printer.ResetPrinter();
+												}
+												else
+												{
+																MessageBox.Show("未检测到打印机", "连接打印机");
+												}
 								}
 				}
 }
