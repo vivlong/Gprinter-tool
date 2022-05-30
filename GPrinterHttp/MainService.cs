@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.ServiceProcess;
 using System.Text;
 
@@ -32,6 +33,15 @@ namespace GPrinterHttp
 																httpListener.Start();
 																Logger.Debug("服务端已启动:" + DateTime.Now.ToString());
 																httpListener.BeginGetContext(ListenerHandle, httpListener);
+																//IPHostEntry ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+																//IPAddress ipAddress = ipHostInfo.AddressList[0];
+																//IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
+																//Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+																//listener.Bind(localEndPoint);
+																//listener.Listen(9);
+																//while (true)
+																//{
+																//}
 												}
 												catch (Exception ex)
 												{
@@ -59,6 +69,7 @@ namespace GPrinterHttp
 																				httpListener.BeginGetContext(ListenerHandle, httpListener);
 																				HttpListenerContext context = httpListener.EndGetContext(result);
 																				HttpListenerRequest request = context.Request;
+																				HttpListenerResponse response = context.Response;
 																				Dictionary<string, string> rst = new Dictionary<string, string>();
 																				rst.Add("ret", "200");
 																				rst.Add("msg", "done");
@@ -89,15 +100,19 @@ namespace GPrinterHttp
 																																}
 																												}
 																												break;
+																								case "OPTIONS":
+																												response.AddHeader("Access-Control-Allow-Headers", "*");
+																												response.AddHeader("Access-Control-Allow-Methods", "*");
+																												break;
 																				}
-																				HttpListenerResponse response = context.Response;
 																				response.StatusCode = 200;
 																				response.ContentType = "application/json;charset=UTF-8";
 																				response.ContentEncoding = Encoding.UTF8;
+																				response.AppendHeader("Access-Control-Allow-Origin", "*");
 																				response.AppendHeader("Content-Type", "application/json;charset=UTF-8");
 																				using (StreamWriter writer = new StreamWriter(response.OutputStream, Encoding.UTF8))
 																				{
-																								writer.Write(rst);
+																								writer.Write(JsonConvert.SerializeObject(rst));
 																								writer.Close();
 																								response.Close();
 																				}
@@ -118,7 +133,6 @@ namespace GPrinterHttp
 												}
 								}
 
-
 								private void handleGetAction(Dictionary<string, string> ds)
 								{
 												// Call Printer
@@ -137,5 +151,7 @@ namespace GPrinterHttp
 																}
 												}
 								}
+
+
 				}
 }

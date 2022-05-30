@@ -145,7 +145,7 @@ namespace GPrinterHttp
 												}
 								}
 
-								public void PrintByType(string type, string sn)
+								public void PrintByType(string type, string code)
 								{
 												try
 												{
@@ -153,7 +153,7 @@ namespace GPrinterHttp
 																{
 																				//Logger.Debug("PrintSn1" + model + "///" + sn);
 																				SetBaseConfig();
-																				SendData2USB($"BARCODE 105,25,\"128\",60,1,0,2,2,\"{sn}\"\r\n"); //一维条码
+																				SendData2USB($"BARCODE 105,25,\"128\",60,1,0,2,2,\"{code}\"\r\n"); //一维条码
 																				SendData2USB("PRINT 1\r\n"); // 打印出存储于影像缓冲区内的数据(指定打印的份数, 每张标签需重复打印的张数) 1~65535
 																				SendData2USB("EOP\r\n");
 																				NewUsb.CloseUSBPort();
