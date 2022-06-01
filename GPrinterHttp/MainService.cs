@@ -143,11 +143,23 @@ namespace GPrinterHttp
 																//Logger.Debug("outType:" + modType);
 																if (modType == "sn")
 																{
-																				string outModel;
+																				//string outModel;
 																				string modCode;
-																				ds.TryGetValue("model", out outModel);
+																				//ds.TryGetValue("model", out outModel);
 																				ds.TryGetValue("code", out modCode);
-																				printer.PrintByType(outModel, modCode);
+																				printer.PrintByType(modType, modCode);
+																}
+																else if (modType == "txt")
+																{
+																				//string outModel;
+																				string modTxt;
+																				//ds.TryGetValue("model", out outModel);
+																				ds.TryGetValue("text", out modTxt);
+																				printer.PrintByType(modType, modTxt);
+																}
+																else if (modType == "chk")
+																{
+																				printer.CheckPrinter();
 																}
 												}
 								}

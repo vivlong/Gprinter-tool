@@ -89,7 +89,7 @@ namespace GPrinterHttp
 																				SendData2USB("DIRECTION 0\r\n"); //定义打印时出纸和打印字体的方向
 																				SendData2USB("REFERENCE 0,0\r\n"); //定义卷标的参考坐标原点(水平方向的坐标位置dot, 垂直方向的坐标位置dot)
 																				SendData2USB($"TEXT 400,15,2,0,1,1,\"{msg}\"\r\n"); //字符串
-																																																																								//SendData2USB("TEXT 15,60,\"TSS24.BF2\",0,1,1,\"简体字\"\r\n"); //字符串
+																				//SendData2USB("TEXT 15,60,\"TSS24.BF2\",0,1,1,\"简体字\"\r\n"); //字符串
 																				SendData2USB($"QRCODE 400,40,H,4,A,0,\"{msg}\"\r\n"); //二维码
 																																																																										//SendData2USB($"BARCODE 20,80,\"128M\",48,1,0,2,2,\"{msg}\"\r\n"); //一维条码
 																																																																										//如果需要图片
@@ -163,14 +163,21 @@ namespace GPrinterHttp
 												}
 								}
 
-								public void PrintByType(string type, string code)
+								public void PrintByType(string type, string data)
 								{
 												try
 												{
 																if (NewUsb.USBState)
 																{
 																				SetBaseConfig();
-																				SendData2USB($"BARCODE 105,25,\"128\",60,1,0,2,2,\"{code}\"\r\n"); //一维条码
+																				if(type == "sn")
+																				{
+																								SendData2USB($"BARCODE 105,25,\"128\",60,1,0,2,2,\"{data}\"\r\n"); //一维条码
+																				}
+																				else if (type == "txt")
+																				{
+																								SendData2USB($"TEXT 105,25,\"4\",0,1,1,\"{data}\"\r\n"); //字符串
+																				}
 																				SendData2USB("PRINT 1\r\n"); // 打印出存储于影像缓冲区内的数据(指定打印的份数, 每张标签需重复打印的张数) 1~65535
 																				SendData2USB("EOP\r\n");
 																				NewUsb.CloseUSBPort();
