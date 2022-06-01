@@ -155,13 +155,11 @@ namespace GPrinterHttp
 																				ds.TryGetValue("code", out modCode);
 																				printer.PrintByType(modType, modCode);
 																}
-																else if (modType == "txt")
+																else if (modType == "custom")
 																{
-																				//string outModel;
-																				string modTxt;
-																				//ds.TryGetValue("model", out outModel);
-																				ds.TryGetValue("text", out modTxt);
-																				printer.PrintByType(modType, modTxt);
+																				string modData;
+																				ds.TryGetValue("data", out modData);
+																				printer.PrintByType(modType, modData);
 																}
 												}
 												else

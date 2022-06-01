@@ -174,9 +174,9 @@ namespace GPrinterHttp
 																				{
 																								SendData2USB($"BARCODE 105,25,\"128\",60,1,0,2,2,\"{data}\"\r\n"); //一维条码
 																				}
-																				else if (type == "txt")
+																				else if (type == "custom")
 																				{
-																								SendData2USB($"TEXT 105,25,\"4\",0,1,1,\"{data}\"\r\n"); //字符串
+																								SendData2USB($"{data}\r\n"); //字符串
 																				}
 																				SendData2USB("PRINT 1\r\n"); // 打印出存储于影像缓冲区内的数据(指定打印的份数, 每张标签需重复打印的张数) 1~65535
 																				SendData2USB("EOP\r\n");
