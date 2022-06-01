@@ -93,10 +93,16 @@ namespace GPrinterHttp
 																																if (data.Count > 0)
 																																{
 																																				var ds = data.AllKeys.ToDictionary(k => k, k => data.Get(k));
-																																				var content = JsonConvert.SerializeObject(ds);
-																																				rst.Add("data", content);
-																																				Logger.Debug("接收数据:" + content);
-																																				handleGetAction(ds);
+																																				var rs = handleGetAction(ds);
+																																				if(rs)
+																																				{
+																																								var content = JsonConvert.SerializeObject(ds);
+																																								rst.Add("data", content);
+																																								Logger.Debug("接收数据:" + content);
+																																				} else
+																																				{
+																																								rst.Add("data", "");
+																																				}
 																																}
 																												}
 																												break;
@@ -133,7 +139,7 @@ namespace GPrinterHttp
 												}
 								}
 
-								private void handleGetAction(Dictionary<string, string> ds)
+								private Boolean handleGetAction(Dictionary<string, string> ds)
 								{
 												// Call Printer
 												if (printer.CheckPrinter())
@@ -157,11 +163,12 @@ namespace GPrinterHttp
 																				ds.TryGetValue("text", out modTxt);
 																				printer.PrintByType(modType, modTxt);
 																}
-																else if (modType == "chk")
-																{
-																				printer.CheckPrinter();
-																}
 												}
+												else
+												{
+																return false;
+												}
+												return true;
 								}
 
 
