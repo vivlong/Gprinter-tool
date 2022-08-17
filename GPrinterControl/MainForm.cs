@@ -14,6 +14,9 @@ namespace GPrinterControl
 
 								public MainForm()
 								{
+												//
+												//System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CHS");
+												//
 												InitializeComponent();
 												btnServiceStart.Enabled = true;
 												btnServiceStop.Enabled = false;

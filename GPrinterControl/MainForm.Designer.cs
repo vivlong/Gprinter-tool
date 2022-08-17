@@ -28,205 +28,157 @@
 								/// </summary>
 								private void InitializeComponent()
 								{
-												this.components = new System.ComponentModel.Container();
-												System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-												this.groupBox1 = new System.Windows.Forms.GroupBox();
-												this.btnServiceUninstall = new System.Windows.Forms.Button();
-												this.label4 = new System.Windows.Forms.Label();
-												this.pictureBox1 = new System.Windows.Forms.PictureBox();
-												this.label3 = new System.Windows.Forms.Label();
-												this.label2 = new System.Windows.Forms.Label();
-												this.label1 = new System.Windows.Forms.Label();
-												this.btnServiceStop = new System.Windows.Forms.Button();
-												this.btnServiceStart = new System.Windows.Forms.Button();
-												this.groupBox2 = new System.Windows.Forms.GroupBox();
-												this.btnTestUSB = new System.Windows.Forms.Button();
-												this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-												this.notifyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-												this.PrinterStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-												this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-												this.btnSetPageHome = new System.Windows.Forms.Button();
-												this.groupBox1.SuspendLayout();
-												((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-												this.groupBox2.SuspendLayout();
-												this.notifyMenu.SuspendLayout();
-												this.SuspendLayout();
-												// 
-												// groupBox1
-												// 
-												this.groupBox1.Controls.Add(this.btnServiceUninstall);
-												this.groupBox1.Controls.Add(this.label4);
-												this.groupBox1.Controls.Add(this.pictureBox1);
-												this.groupBox1.Controls.Add(this.label3);
-												this.groupBox1.Controls.Add(this.label2);
-												this.groupBox1.Controls.Add(this.label1);
-												this.groupBox1.Controls.Add(this.btnServiceStop);
-												this.groupBox1.Controls.Add(this.btnServiceStart);
-												this.groupBox1.Location = new System.Drawing.Point(12, 12);
-												this.groupBox1.Name = "groupBox1";
-												this.groupBox1.Size = new System.Drawing.Size(460, 78);
-												this.groupBox1.TabIndex = 0;
-												this.groupBox1.TabStop = false;
-												this.groupBox1.Text = "服务";
-												// 
-												// btnServiceUninstall
-												// 
-												this.btnServiceUninstall.Image = global::GPrinterControl.Properties.Resources.icon_warn;
-												this.btnServiceUninstall.Location = new System.Drawing.Point(404, 20);
-												this.btnServiceUninstall.Name = "btnServiceUninstall";
-												this.btnServiceUninstall.Size = new System.Drawing.Size(50, 50);
-												this.btnServiceUninstall.TabIndex = 7;
-												this.btnServiceUninstall.UseVisualStyleBackColor = true;
-												this.btnServiceUninstall.Click += new System.EventHandler(this.btnServiceUninstall_Click);
-												// 
-												// label4
-												// 
-												this.label4.AutoSize = true;
-												this.label4.Location = new System.Drawing.Point(353, 39);
-												this.label4.Name = "label4";
-												this.label4.Size = new System.Drawing.Size(53, 12);
-												this.label4.TabIndex = 6;
-												this.label4.Text = "卸载服务";
-												// 
-												// pictureBox1
-												// 
-												this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-												this.pictureBox1.Location = new System.Drawing.Point(65, 20);
-												this.pictureBox1.Name = "pictureBox1";
-												this.pictureBox1.Size = new System.Drawing.Size(50, 50);
-												this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-												this.pictureBox1.TabIndex = 5;
-												this.pictureBox1.TabStop = false;
-												// 
-												// label3
-												// 
-												this.label3.AutoSize = true;
-												this.label3.Location = new System.Drawing.Point(6, 39);
-												this.label3.Name = "label3";
-												this.label3.Size = new System.Drawing.Size(53, 12);
-												this.label3.TabIndex = 4;
-												this.label3.Text = "服务状态";
-												// 
-												// label2
-												// 
-												this.label2.AutoSize = true;
-												this.label2.Location = new System.Drawing.Point(238, 39);
-												this.label2.Name = "label2";
-												this.label2.Size = new System.Drawing.Size(53, 12);
-												this.label2.TabIndex = 3;
-												this.label2.Text = "停止服务";
-												// 
-												// label1
-												// 
-												this.label1.AutoSize = true;
-												this.label1.Location = new System.Drawing.Point(123, 39);
-												this.label1.Name = "label1";
-												this.label1.Size = new System.Drawing.Size(53, 12);
-												this.label1.TabIndex = 2;
-												this.label1.Text = "启动服务";
-												// 
-												// btnServiceStop
-												// 
-												this.btnServiceStop.Image = global::GPrinterControl.Properties.Resources.full_stop_hover;
-												this.btnServiceStop.Location = new System.Drawing.Point(297, 20);
-												this.btnServiceStop.Name = "btnServiceStop";
-												this.btnServiceStop.Size = new System.Drawing.Size(50, 50);
-												this.btnServiceStop.TabIndex = 1;
-												this.btnServiceStop.UseVisualStyleBackColor = true;
-												this.btnServiceStop.Click += new System.EventHandler(this.btnServiceStop_Click);
-												// 
-												// btnServiceStart
-												// 
-												this.btnServiceStart.Image = global::GPrinterControl.Properties.Resources.full_play_hover;
-												this.btnServiceStart.Location = new System.Drawing.Point(182, 20);
-												this.btnServiceStart.Name = "btnServiceStart";
-												this.btnServiceStart.Size = new System.Drawing.Size(50, 50);
-												this.btnServiceStart.TabIndex = 0;
-												this.btnServiceStart.UseVisualStyleBackColor = true;
-												this.btnServiceStart.Click += new System.EventHandler(this.btnServiceStart_Click);
-												// 
-												// groupBox2
-												// 
-												this.groupBox2.Controls.Add(this.btnSetPageHome);
-												this.groupBox2.Controls.Add(this.btnTestUSB);
-												this.groupBox2.Location = new System.Drawing.Point(12, 96);
-												this.groupBox2.Name = "groupBox2";
-												this.groupBox2.Size = new System.Drawing.Size(460, 53);
-												this.groupBox2.TabIndex = 1;
-												this.groupBox2.TabStop = false;
-												this.groupBox2.Text = "标签打印测试";
-												// 
-												// btnTestUSB
-												// 
-												this.btnTestUSB.Location = new System.Drawing.Point(87, 20);
-												this.btnTestUSB.Name = "btnTestUSB";
-												this.btnTestUSB.Size = new System.Drawing.Size(106, 23);
-												this.btnTestUSB.TabIndex = 0;
-												this.btnTestUSB.Text = "USB条码测试";
-												this.btnTestUSB.UseVisualStyleBackColor = true;
-												this.btnTestUSB.Click += new System.EventHandler(this.btnTestUSB_Click);
-												// 
-												// notifyIcon1
-												// 
-												this.notifyIcon1.ContextMenuStrip = this.notifyMenu;
-												this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-												this.notifyIcon1.Text = "GP条码打印服务";
-												this.notifyIcon1.Visible = true;
-												this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
-												// 
-												// notifyMenu
-												// 
-												this.notifyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnServiceUninstall = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnServiceStop = new System.Windows.Forms.Button();
+            this.btnServiceStart = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnSetPageHome = new System.Windows.Forms.Button();
+            this.btnTestUSB = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.PrinterStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.notifyMenu.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnServiceUninstall);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnServiceStop);
+            this.groupBox1.Controls.Add(this.btnServiceStart);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // btnServiceUninstall
+            // 
+            this.btnServiceUninstall.Image = global::GPrinterControl.Properties.Resources.icon_warn;
+            resources.ApplyResources(this.btnServiceUninstall, "btnServiceUninstall");
+            this.btnServiceUninstall.Name = "btnServiceUninstall";
+            this.btnServiceUninstall.UseVisualStyleBackColor = true;
+            this.btnServiceUninstall.Click += new System.EventHandler(this.btnServiceUninstall_Click);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // btnServiceStop
+            // 
+            this.btnServiceStop.Image = global::GPrinterControl.Properties.Resources.full_stop_hover;
+            resources.ApplyResources(this.btnServiceStop, "btnServiceStop");
+            this.btnServiceStop.Name = "btnServiceStop";
+            this.btnServiceStop.UseVisualStyleBackColor = true;
+            this.btnServiceStop.Click += new System.EventHandler(this.btnServiceStop_Click);
+            // 
+            // btnServiceStart
+            // 
+            this.btnServiceStart.Image = global::GPrinterControl.Properties.Resources.full_play_hover;
+            resources.ApplyResources(this.btnServiceStart, "btnServiceStart");
+            this.btnServiceStart.Name = "btnServiceStart";
+            this.btnServiceStart.UseVisualStyleBackColor = true;
+            this.btnServiceStart.Click += new System.EventHandler(this.btnServiceStart_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnSetPageHome);
+            this.groupBox2.Controls.Add(this.btnTestUSB);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // btnSetPageHome
+            // 
+            resources.ApplyResources(this.btnSetPageHome, "btnSetPageHome");
+            this.btnSetPageHome.Name = "btnSetPageHome";
+            this.btnSetPageHome.UseVisualStyleBackColor = true;
+            this.btnSetPageHome.Click += new System.EventHandler(this.btnSetPageHome_Click);
+            // 
+            // btnTestUSB
+            // 
+            resources.ApplyResources(this.btnTestUSB, "btnTestUSB");
+            this.btnTestUSB.Name = "btnTestUSB";
+            this.btnTestUSB.UseVisualStyleBackColor = true;
+            this.btnTestUSB.Click += new System.EventHandler(this.btnTestUSB_Click);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.notifyMenu;
+            resources.ApplyResources(this.notifyIcon1, "notifyIcon1");
+            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
+            // 
+            // notifyMenu
+            // 
+            this.notifyMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.PrinterStatusToolStripMenuItem,
             this.ExitToolStripMenuItem});
-												this.notifyMenu.Name = "notifyMenu";
-												this.notifyMenu.Size = new System.Drawing.Size(137, 48);
-												// 
-												// PrinterStatusToolStripMenuItem
-												// 
-												this.PrinterStatusToolStripMenuItem.Name = "PrinterStatusToolStripMenuItem";
-												this.PrinterStatusToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-												this.PrinterStatusToolStripMenuItem.Text = "打印机状态";
-												this.PrinterStatusToolStripMenuItem.Click += new System.EventHandler(this.PrinterStatusToolStripMenuItem_Click);
-												// 
-												// ExitToolStripMenuItem
-												// 
-												this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-												this.ExitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-												this.ExitToolStripMenuItem.Text = "退出";
-												this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
-												// 
-												// btnSetPageHome
-												// 
-												this.btnSetPageHome.Location = new System.Drawing.Point(199, 20);
-												this.btnSetPageHome.Name = "btnSetPageHome";
-												this.btnSetPageHome.Size = new System.Drawing.Size(106, 23);
-												this.btnSetPageHome.TabIndex = 1;
-												this.btnSetPageHome.Text = "打印纸归位";
-												this.btnSetPageHome.UseVisualStyleBackColor = true;
-												this.btnSetPageHome.Click += new System.EventHandler(this.btnSetPageHome_Click);
-												// 
-												// MainForm
-												// 
-												this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-												this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-												this.ClientSize = new System.Drawing.Size(484, 161);
-												this.Controls.Add(this.groupBox2);
-												this.Controls.Add(this.groupBox1);
-												this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-												this.MaximizeBox = false;
-												this.Name = "MainForm";
-												this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-												this.Text = "条码打印服务";
-												this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-												this.groupBox1.ResumeLayout(false);
-												this.groupBox1.PerformLayout();
-												((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-												this.groupBox2.ResumeLayout(false);
-												this.notifyMenu.ResumeLayout(false);
-												this.ResumeLayout(false);
+            this.notifyMenu.Name = "notifyMenu";
+            resources.ApplyResources(this.notifyMenu, "notifyMenu");
+            // 
+            // PrinterStatusToolStripMenuItem
+            // 
+            this.PrinterStatusToolStripMenuItem.Name = "PrinterStatusToolStripMenuItem";
+            resources.ApplyResources(this.PrinterStatusToolStripMenuItem, "PrinterStatusToolStripMenuItem");
+            this.PrinterStatusToolStripMenuItem.Click += new System.EventHandler(this.PrinterStatusToolStripMenuItem_Click);
+            // 
+            // ExitToolStripMenuItem
+            // 
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            resources.ApplyResources(this.ExitToolStripMenuItem, "ExitToolStripMenuItem");
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+            // 
+            // MainForm
+            // 
+            resources.ApplyResources(this, "$this");
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.Name = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.notifyMenu.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 								}
 
