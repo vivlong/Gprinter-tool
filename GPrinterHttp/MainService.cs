@@ -168,6 +168,12 @@ namespace GPrinterHttp
                     ds.TryGetValue("data", out modData);
                     printer.PrintByType(modType, modData);
                 }
+                else if (modType == "logo")
+                {
+                    string modData;
+                    ds.TryGetValue("data", out modData);
+                    printer.PrintByType(modType, modData);
+                }
             }
             else
             {

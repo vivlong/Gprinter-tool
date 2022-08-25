@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace GPrinterHttp
@@ -6,6 +9,23 @@ namespace GPrinterHttp
     public class Printer
     {
         private libUsbContorl.UsbOperation NewUsb = new libUsbContorl.UsbOperation();
+
+        public List<string> GetPrinterList()
+        {
+            try
+            {
+                NewUsb.FindUSBPrinter();
+                if (NewUsb.USBPortCount >= 1)
+                {
+                    return NewUsb.mCurrentDevicePath;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }
+            return new List<string>();
+        }
 
         public bool CheckPrinter()
         {
@@ -18,6 +38,7 @@ namespace GPrinterHttp
                 }
                 else
                 {
+
                     for (int i = 0; i < NewUsb.USBPortCount; i++)
                     {
                         NewUsb.LinkUSB(i);
@@ -194,13 +215,49 @@ namespace GPrinterHttp
             }
         }
 
+        public void PrintWithBmp(string type, uint sendWidth, uint sendHeight, byte[] data)
+        {
+            try
+            {
+                if (NewUsb.USBState)
+                {
+                    if (type == "logo")
+                    {
+                        SendData2USB("SIZE 60 mm,80 mm\r\n"); //标签尺寸(宽度,长度) 使用公制单位，在单位与数字之间必须添加一个空格
+                        SendData2USB("GAP 2 mm,0 mm\r\n"); //两张卷标纸间的垂直间距距离(两标签纸中间的垂直距离, 垂直间距偏移
+                        SendData2USB("CLS\r\n"); //清除图像缓冲区（image buffer)的数据
+                        SendData2USB("DENSITY 8\r\n"); //打印浓度(0~15)
+                        SendData2USB("DIRECTION 0\r\n"); //定义打印时出纸和打印字体的方向
+                        SendData2USB("REFERENCE 0,0\r\n"); //定义卷标的参考坐标原点(水平方向的坐标位置dot, 垂直方向的坐标位置dot))                       
+                        //SendData2USB($"DOWNLOAD \"logos.bmp\",{data.Length},");
+                        //SendData2USB(data);
+                        //SendData2USB("PUTBMP 320,40,\"logos.bmp\"\r\n");
+                        SendData2USB("BITMAP 320,40," + (sendWidth / 8).ToString() + "," + sendHeight.ToString() + ",0,");
+                        //SendData2USB("BITMAP 320,40,100,100,0,");
+                        SendData2USB(data);
+                        SendData2USB("TEXT 300,40,\"4\",90,1,1,\"model: epoche 700C\"\r\n");
+                        SendData2USB("TEXT 240,40,\"3\",90,1,1,\"freehub: xdr\"\r\n");
+                        SendData2USB("BARCODE 120,5,\"128\",80,1,90,2,2,\"WS700C24H24I30D1001214212XDR\"\r\n");
+                    }
+                    SendData2USB("PRINT 1\r\n"); // 打印出存储于影像缓冲区内的数据(指定打印的份数, 每张标签需重复打印的张数) 1~65535
+                    SendData2USB("KILL \"logos.bmp\"\r\n");
+                    SendData2USB("EOP\r\n");
+                    NewUsb.CloseUSBPort();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }
+        }
         private void SetBaseConfig()
         {
             //SendData2USB("SIZE 100 mm,80 mm\r\n"); //标签尺寸(宽度,长度) 使用公制单位，在单位与数字之间必须添加一个空格
             //SendData2USB("SIZE 65 mm,15 mm\r\n"); //标签尺寸(宽度,长度) 使用公制单位，在单位与数字之间必须添加一个空格
+            SendData2USB("SIZE 60 mm,80 mm\r\n"); //标签尺寸(宽度,长度) 使用公制单位，在单位与数字之间必须添加一个空格
             SendData2USB("GAP 2 mm,0 mm\r\n"); //两张卷标纸间的垂直间距距离(两标签纸中间的垂直距离, 垂直间距偏移)
             SendData2USB("CLS\r\n"); //清除图像缓冲区（image buffer)的数据
-            SendData2USB("DENSITY 8\r\n"); //打印浓度(0~15)
+            SendData2USB("DENSITY 12\r\n"); //打印浓度(0~15)
             SendData2USB("DIRECTION 0\r\n"); //定义打印时出纸和打印字体的方向
             SendData2USB("REFERENCE 0,0\r\n"); //定义卷标的参考坐标原点(水平方向的坐标位置dot, 垂直方向的坐标位置dot)
         }
@@ -214,6 +271,7 @@ namespace GPrinterHttp
         {
             byte[] by_SendData = Encoding.UTF8.GetBytes(str);
             //byte[] by_SendData = Encoding.GetEncoding("gb18030").GetBytes(str);
+            //byte[] by_SendData = Encoding.GetEncoding(54936).GetBytes(str);
             SendData2USB(by_SendData);
         }
     }

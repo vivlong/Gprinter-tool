@@ -40,16 +40,26 @@
             this.btnServiceStop = new System.Windows.Forms.Button();
             this.btnServiceStart = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnGetPrinterList = new System.Windows.Forms.Button();
             this.btnSetPageHome = new System.Windows.Forms.Button();
             this.btnTestUSB = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.PrinterStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.portNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.operation = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnTestLabel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.notifyMenu.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -118,11 +128,20 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnTestLabel);
+            this.groupBox2.Controls.Add(this.btnGetPrinterList);
             this.groupBox2.Controls.Add(this.btnSetPageHome);
             this.groupBox2.Controls.Add(this.btnTestUSB);
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // btnGetPrinterList
+            // 
+            resources.ApplyResources(this.btnGetPrinterList, "btnGetPrinterList");
+            this.btnGetPrinterList.Name = "btnGetPrinterList";
+            this.btnGetPrinterList.UseVisualStyleBackColor = true;
+            this.btnGetPrinterList.Click += new System.EventHandler(this.btnGetPrinterList_Click);
             // 
             // btnSetPageHome
             // 
@@ -164,10 +183,67 @@
             resources.ApplyResources(this.ExitToolStripMenuItem, "ExitToolStripMenuItem");
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            resources.ApplyResources(this.dataGridView1, "dataGridView1");
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.portNo,
+            this.printerName,
+            this.size,
+            this.operation});
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowTemplate.Height = 23;
+            // 
+            // portNo
+            // 
+            resources.ApplyResources(this.portNo, "portNo");
+            this.portNo.Name = "portNo";
+            this.portNo.ReadOnly = true;
+            // 
+            // printerName
+            // 
+            resources.ApplyResources(this.printerName, "printerName");
+            this.printerName.Name = "printerName";
+            this.printerName.ReadOnly = true;
+            // 
+            // size
+            // 
+            resources.ApplyResources(this.size, "size");
+            this.size.Name = "size";
+            this.size.ReadOnly = true;
+            // 
+            // operation
+            // 
+            resources.ApplyResources(this.operation, "operation");
+            this.operation.Name = "operation";
+            this.operation.ReadOnly = true;
+            // 
+            // btnTestLabel
+            // 
+            resources.ApplyResources(this.btnTestLabel, "btnTestLabel");
+            this.btnTestLabel.Name = "btnTestLabel";
+            this.btnTestLabel.UseVisualStyleBackColor = true;
+            this.btnTestLabel.Click += new System.EventHandler(this.btnTestLabel_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
@@ -178,6 +254,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.notifyMenu.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
 								}
@@ -200,6 +278,14 @@
 								private System.Windows.Forms.Label label4;
 								private System.Windows.Forms.Button btnServiceUninstall;
 								private System.Windows.Forms.Button btnSetPageHome;
-				}
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnGetPrinterList;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn portNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn printerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn size;
+        private System.Windows.Forms.DataGridViewButtonColumn operation;
+        private System.Windows.Forms.Button btnTestLabel;
+    }
 }
 
