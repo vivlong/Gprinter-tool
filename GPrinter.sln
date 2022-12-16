@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPrinterHttp", "GPrinterHtt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPrinterControl", "GPrinterControl\GPrinterControl.csproj", "{28543BB1-1683-4D05-B813-A6FCA6AA9DBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messi", "Messi\Messi.csproj", "{4C44ECF0-B004-4A78-8073-C12D5BE5C893}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{28543BB1-1683-4D05-B813-A6FCA6AA9DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28543BB1-1683-4D05-B813-A6FCA6AA9DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28543BB1-1683-4D05-B813-A6FCA6AA9DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C44ECF0-B004-4A78-8073-C12D5BE5C893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C44ECF0-B004-4A78-8073-C12D5BE5C893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C44ECF0-B004-4A78-8073-C12D5BE5C893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C44ECF0-B004-4A78-8073-C12D5BE5C893}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
