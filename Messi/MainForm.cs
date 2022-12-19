@@ -12,6 +12,7 @@ namespace Messi
             InitializeComponent();
             btnStart.Enabled = true;
             btnStop.Enabled = false;
+            uiLedBulb1.Color = Color.Gray;
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -19,6 +20,7 @@ namespace Messi
             btnStart.Enabled = false;
             btnStop.Enabled = true;
             serve.Start();
+            uiLedBulb1.Color = Color.PaleGreen;
         }
 
         private void BtnStop_Click(object sender, EventArgs e)
@@ -26,6 +28,7 @@ namespace Messi
             btnStart.Enabled = true;
             btnStop.Enabled = false;
             serve.Stop();
+            uiLedBulb1.Color = Color.LightCoral;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -54,6 +57,36 @@ namespace Messi
             if (result == DialogResult.OK)
             {
                 Application.Exit();
+            }
+        }
+
+        private void BtnGetPrinter_Click(object sender, EventArgs e)
+        {
+            List<string> DevicePathList = serve.GetPrinterList();
+            foreach (string dp in DevicePathList)
+            {
+                DataGridViewRow row = new ();
+                DataGridViewTextBoxCell textboxcell = new()
+                {
+                    Value = dp
+                };
+                row.Cells.Add(textboxcell);
+                DataGridViewButtonCell buttoncell = new()
+                {
+                    Value = "config"
+                };
+                row.Cells.Add(buttoncell);
+                uiDataGridView1.Rows.Add(row);
+            }
+        }
+
+        private void NotifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Visible = true;
+                WindowState = FormWindowState.Normal;
+                Activate();
             }
         }
     }

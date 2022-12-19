@@ -168,6 +168,11 @@ namespace Messi
             return printer.CheckPrinter();
         }
 
+        public List<string> GetPrinterList()
+        {
+            return printer.GetPrinterList();
+        }
+
         public string ReadDataFmUSB()
         {
             return printer.ReadDataFmUSB();

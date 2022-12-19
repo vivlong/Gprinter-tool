@@ -188,10 +188,10 @@ namespace GPrinterControl
             foreach (string dp in DevicePathList)
             {
                 DataGridViewRow row = new DataGridViewRow();
-                DataGridViewTextBoxCell textboxcell = new DataGridViewTextBoxCell();
+                DataGridViewTextBoxCell textboxcell = new();
                 textboxcell.Value = dp;
                 row.Cells.Add(textboxcell);
-                DataGridViewButtonCell buttoncell = new DataGridViewButtonCell();
+                DataGridViewButtonCell buttoncell = new ();
                 buttoncell.Value = "config";
                 row.Cells.Add(buttoncell);
                 dataGridView1.Rows.Add(row);
