@@ -79,16 +79,21 @@ namespace Syrinx
                     int index = DevicePathList.IndexOf(dp);
                     string[] dps = dp.Split('#');
                     DataGridViewRow row = new DataGridViewRow();
-                    DataGridViewTextBoxCell textboxcell = new DataGridViewTextBoxCell()
+                    DataGridViewTextBoxCell cellPort = new DataGridViewTextBoxCell()
                     {
                         Value = dps[1]
                     };
-                    row.Cells.Add(textboxcell);
-                    DataGridViewButtonCell buttoncell = new DataGridViewButtonCell()
+                    row.Cells.Add(cellPort);
+                    DataGridViewTextBoxCell cellSize = new DataGridViewTextBoxCell()
+                    {
+                        Value = "65x15"
+                    };
+                    row.Cells.Add(cellSize);
+                    DataGridViewButtonCell cellOp= new DataGridViewButtonCell()
                     {
                         Value = (rowIndex == index ? "current" : "...")
                     };
-                    row.Cells.Add(buttoncell);
+                    row.Cells.Add(cellOp);
                     uiDataGridView1.Rows.Add(row);
                 }
             }
@@ -112,14 +117,6 @@ namespace Syrinx
             }
         }
 
-        private void BtnResetPrinter_Click(object sender, EventArgs e)
-        {
-            if (printer.CheckPrinter())
-            {
-                printer.ResetPrinter();
-            }
-        }
-
         private void UiDataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != -1)
@@ -129,6 +126,50 @@ namespace Syrinx
                     printer.SetPrinter(e.RowIndex);
                     MessageBox.Show("Switch to selected printer", "Printer");
                 }
+            }
+        }
+
+        private void BtnResetPrinter1565_Click(object sender, EventArgs e)
+        {
+            if (printer.CheckPrinter())
+            {
+                printer.ResetPrinter(65, 15);
+                int rowIndex = printer.GetPrinter();
+                uiDataGridView1.Rows[rowIndex].Cells[1].Value = "60mm x 15mm";
+                MessageBox.Show("Switch to 65mm x 15mm", "Printer");
+            }
+        }
+
+        private void BtnResetPrinter8060_Click(object sender, EventArgs e)
+        {
+            if (printer.CheckPrinter())
+            {
+                printer.ResetPrinter(60, 80);
+                int rowIndex = printer.GetPrinter();
+                uiDataGridView1.Rows[rowIndex].Cells[1].Value = "60mm x 80mm";
+                MessageBox.Show("Switch to 60mm x 80mm", "Printer");
+            }
+        }
+
+        private void BtnResetPrinter100120_Click(object sender, EventArgs e)
+        {
+            if (printer.CheckPrinter())
+            {
+                printer.ResetPrinter(120, 100);
+                int rowIndex = printer.GetPrinter();
+                uiDataGridView1.Rows[rowIndex].Cells[1].Value = "120mm x 100mm";
+                MessageBox.Show("Switch to 120mm x 100mm", "Printer");
+            }
+        }
+
+        private void BtnResetPrinter100100_Click(object sender, EventArgs e)
+        {
+            if (printer.CheckPrinter())
+            {
+                printer.ResetPrinter(100, 100);
+                int rowIndex = printer.GetPrinter();
+                uiDataGridView1.Rows[rowIndex].Cells[1].Value = "100mm x 100mm";
+                MessageBox.Show("Switch to 100mm x 100mm", "Printer");
             }
         }
     }
