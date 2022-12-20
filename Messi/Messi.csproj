@@ -18,6 +18,8 @@
   <ItemGroup>
     <Reference Include="libUsbContorl">
       <HintPath>libUsbContorl.dll</HintPath>
+      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
 

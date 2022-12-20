@@ -1,16 +1,21 @@
-﻿using System.Net;
-using System.Reflection.Emit;
-using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Text;
-using System.Windows.Forms;
 using Newtonsoft.Json;
 
-namespace Messi
+namespace Syrinx
 {
     public class Startup
     {
-        private HttpListener? httpListener;
-        private Printer printer = new();
+        private HttpListener httpListener;
+        private Printer printer;
+        public Startup(Printer p)
+        {
+            printer = p;
+        }
 
         public void Start()
         {
@@ -52,7 +57,7 @@ namespace Messi
                     HttpListenerContext context = httpListener.EndGetContext(result);
                     HttpListenerRequest request = context.Request;
                     HttpListenerResponse response = context.Response;
-                    Dictionary<string, string> rst = new()
+                    Dictionary<string, string> rst = new Dictionary<string, string>()
                     {
                         { "ret", "200" },
                         { "msg", "done" }
@@ -62,7 +67,7 @@ namespace Messi
                         case "POST":
                             {
                                 Stream stream = context.Request.InputStream;
-                                StreamReader reader = new(stream, Encoding.UTF8);
+                                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
                                 string rd = reader.ReadToEnd();
                                 var ds = JsonConvert.DeserializeObject(rd);
                                 var content = JsonConvert.SerializeObject(ds);
@@ -77,7 +82,7 @@ namespace Messi
                                 if (data.Count > 0)
                                 {
                                     var ds = data.AllKeys.ToDictionary(k => k, k => data.Get(k));
-                                    if(ds is not null)
+                                    if (ds != null)
                                     {
                                         var rs = HandleGetAction(ds);
                                         if (rs)
@@ -105,10 +110,12 @@ namespace Messi
                     response.AppendHeader("Content-Type", "application/json;charset=UTF-8");
                     response.AppendHeader("Access-Control-Allow-Origin", "*");
                     response.AppendHeader("Access-Control-Allow-Credentials", "true");
-                    using StreamWriter writer = new(response.OutputStream, Encoding.UTF8);
-                    writer.Write(JsonConvert.SerializeObject(rst));
-                    writer.Close();
-                    response.Close();
+                    using (StreamWriter writer = new StreamWriter(response.OutputStream, Encoding.UTF8))
+                    {
+                        writer.Write(JsonConvert.SerializeObject(rst));
+                        writer.Close();
+                        response.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -129,30 +136,30 @@ namespace Messi
         private Boolean HandleGetAction(Dictionary<string, string> ds)
         {
             // Call Printer
-            if (printer.CheckPrinter() && ds is not null)
+            if (printer.CheckPrinter() && ds != null)
             {
-                ds.TryGetValue("type", out string? modType);
-                if (modType is not null)
+                ds.TryGetValue("type", out string modType);
+                if (modType != null)
                 {
                     if (modType == "sn")
                     {
-                        ds.TryGetValue("code", out string? modCode);
-                        if (modCode is not null) printer.PrintByType(modType, modCode);
+                        ds.TryGetValue("code", out string modCode);
+                        if (modCode != null) printer.PrintByType(modType, modCode);
                     }
                     else if (modType == "custom")
                     {
-                        ds.TryGetValue("data", out string? modData);
-                        if (modData is not null) printer.PrintByType(modType, modData);
+                        ds.TryGetValue("data", out string modData);
+                        if (modData != null) printer.PrintByType(modType, modData);
                     }
                     else if (modType == "raw")
                     {
-                        ds.TryGetValue("data", out string? modData);
-                        if (modData is not null) printer.PrintByType(modType, modData);
+                        ds.TryGetValue("data", out string modData);
+                        if (modData != null) printer.PrintByType(modType, modData);
                     }
                     else if (modType == "logo")
                     {
-                        ds.TryGetValue("data", out string? modData);
-                        if (modData is not null) printer.PrintByType(modType, modData);
+                        ds.TryGetValue("data", out string modData);
+                        if (modData != null) printer.PrintByType(modType, modData);
                     }
                 }
             }
@@ -161,21 +168,6 @@ namespace Messi
                 return false;
             }
             return true;
-        }
-
-        public Boolean CheckPrinter()
-        {
-            return printer.CheckPrinter();
-        }
-
-        public List<string> GetPrinterList()
-        {
-            return printer.GetPrinterList();
-        }
-
-        public string ReadDataFmUSB()
-        {
-            return printer.ReadDataFmUSB();
         }
 
     }
