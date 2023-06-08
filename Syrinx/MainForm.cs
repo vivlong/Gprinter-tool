@@ -11,23 +11,32 @@ namespace Syrinx
     {
         private readonly Printer printer = new Printer();
         private readonly Startup serve;
+        delegate void AsynUpdateUI(bool bln);
 
         public MainForm()
         {
             InitializeComponent();
             btnStart.Enabled = true;
             btnStop.Enabled = false;
-            uiLedBulb1.Color = Color.Gray;
+            uiLedBulbLocal.Color = Color.Gray;
+            uiDataGridView1.Rows.Clear();
             serve = new Startup(printer);
-            BtnGetPrinter_Click(null, null);
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            btnStart.Enabled = false;
-            btnStop.Enabled = true;
-            serve.Start();
-            uiLedBulb1.Color = Color.PaleGreen;
+            BtnGetPrinter_Click(null, null);
+            if (printer.CheckPrinter())
+            {
+                btnStart.Enabled = false;
+                btnStop.Enabled = true;
+                serve.Start();
+                uiLedBulbLocal.Color = Color.PaleGreen;
+                //
+                serve.UpdateUIDelegate += UpdataUIStatus;
+                Thread thread = new Thread(new ThreadStart(serve.Reg));
+                thread.Start();
+            }
         }
 
         private void BtnStop_Click(object sender, EventArgs e)
@@ -35,7 +44,19 @@ namespace Syrinx
             btnStart.Enabled = true;
             btnStop.Enabled = false;
             serve.Stop();
-            uiLedBulb1.Color = Color.LightCoral;
+            uiLedBulbLocal.Color = Color.LightCoral;
+        }
+
+        private void UpdataUIStatus(bool bln)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new AsynUpdateUI(delegate (bool b)
+                {
+                    // TODO
+                    // uiLedBulbLocal.Color = Color.PaleGreen;
+                }), bln);
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -86,7 +107,7 @@ namespace Syrinx
                     row.Cells.Add(cellPort);
                     DataGridViewTextBoxCell cellSize = new DataGridViewTextBoxCell()
                     {
-                        Value = "65x15"
+                        Value = "65mm x 15mm"
                     };
                     row.Cells.Add(cellSize);
                     DataGridViewButtonCell cellOp= new DataGridViewButtonCell()

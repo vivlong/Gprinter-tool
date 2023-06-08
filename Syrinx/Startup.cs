@@ -1,17 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web.Routing;
+using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Sunny.UI;
+using Sunny.UI.Win32;
 
 namespace Syrinx
 {
     public class Startup
     {
         private HttpListener httpListener;
-        private Printer printer;
+        private readonly Printer printer;
+        private Socket socketClient;
+        public delegate void UpdateUI(bool bln);
+        public UpdateUI UpdateUIDelegate;
         public Startup(Printer p)
         {
             printer = p;
@@ -21,6 +35,7 @@ namespace Syrinx
         {
             try
             {
+                // local
                 httpListener = new HttpListener
                 {
                     AuthenticationSchemes = AuthenticationSchemes.Anonymous
@@ -36,12 +51,141 @@ namespace Syrinx
             }
         }
 
+        public void Reg()
+        {
+            try
+            {
+                // cloud
+                socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                IPAddress IP = IPAddress.Parse("39.108.192.17");
+                int Port = Convert.ToInt32("8847");
+                IPEndPoint ipe = new IPEndPoint(IP, Port);
+                try
+                {
+                    socketClient.Connect(ipe);
+                    if (socketClient.Connected == true)
+                    {
+                        Logger.Debug("Cloud Connected:" + DateTime.Now.ToString());
+                        try
+                        {
+                            JObject dt = new JObject
+                            {
+                                ["act"] = "reg",
+                                ["src"] = "ysprint",
+                                ["id"] = ""
+                            };
+                            List<string> DevicePathList = printer.GetPrinterList();
+                            int rowIndex = printer.GetPrinter();
+                            foreach (string dp in DevicePathList)
+                            {
+                                int index = DevicePathList.IndexOf(dp);
+                                if (rowIndex == index)
+                                {
+                                    string[] dps = dp.Split('#');
+                                    dt["id"] = dps[1];
+                                }
+                            }
+                            string content = JsonConvert.SerializeObject(dt);
+                            SocketSend(content);
+                            Thread Thread_Receive = new Thread(new ThreadStart(SocketReceive));
+                            Thread_Receive.Start();
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error(ex.Message);
+                        }
+                    }
+                }
+                catch (SocketException ex)
+                {
+                    Logger.Error(ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }  
+        }
+
         public void Stop()
         {
-            if (httpListener != null)
+            try
             {
-                httpListener.Close();
-                Logger.Debug("WebHost Stoped:" + DateTime.Now.ToString());
+                if (httpListener != null)
+                {
+                    httpListener.Close();
+                    Logger.Debug("WebHost Stoped:" + DateTime.Now.ToString());
+                }
+                if (socketClient != null)
+                {
+                    socketClient.Shutdown(SocketShutdown.Both);
+                    socketClient.Close();
+                    Logger.Debug("Cloud Disconnected:" + DateTime.Now.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }
+        }
+
+        private void SocketSend(string content)
+        {            
+            byte[] Send = Encoding.UTF8.GetBytes(content);
+            try
+            {
+                socketClient.Send(Send);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }
+        }
+
+        private void SocketReceive()
+        {
+            while (socketClient.Connected == true)
+            {
+                try
+                {
+                    if(socketClient.Poll(-1,SelectMode.SelectRead))
+                    {
+                        byte[] buffer = new byte[1024 * 1024 * 20];
+                        int Length = socketClient.Receive(buffer);
+                        if (Length > 0)
+                        {
+                            string msg = Encoding.UTF8.GetString(buffer, 0, Length);
+                            Logger.Debug("Receive Cloud Msg:" + msg);
+                            try
+                            {
+                                Dictionary<string, string> rst = JsonConvert.DeserializeObject<Dictionary<string, string>>(msg);
+                                if (rst.TryGetValue("act", out string act))
+                                {
+                                    if (act == "reg")
+                                    {
+                                        if(rst.TryGetValue("data", out string rs))
+                                        {
+                                            if(rs == "success") UpdateUIDelegate(true);
+                                        }
+                                    }
+                                    else if (act == "prt")
+                                    {
+                                        // Call Printer
+                                        HandleGetAction(rst);
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Logger.Error(e.Message);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex.Message);
+                }
             }
         }
 
@@ -133,7 +277,7 @@ namespace Syrinx
             }
         }
 
-        private Boolean HandleGetAction(Dictionary<string, string> ds)
+        private bool HandleGetAction(Dictionary<string, string> ds)
         {
             // Call Printer
             if (printer.CheckPrinter() && ds != null)

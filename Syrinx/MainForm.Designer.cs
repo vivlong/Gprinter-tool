@@ -32,13 +32,13 @@ namespace Syrinx
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiGroupBox1 = new Sunny.UI.UIGroupBox();
-            this.uiLedBulb1 = new Sunny.UI.UILedBulb();
+            this.uiLedBulbLocal = new Sunny.UI.UILedBulb();
             this.btnStop = new Sunny.UI.UISymbolButton();
             this.btnStart = new Sunny.UI.UISymbolButton();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -64,7 +64,7 @@ namespace Syrinx
             // 
             // uiGroupBox1
             // 
-            this.uiGroupBox1.Controls.Add(this.uiLedBulb1);
+            this.uiGroupBox1.Controls.Add(this.uiLedBulbLocal);
             this.uiGroupBox1.Controls.Add(this.btnStop);
             this.uiGroupBox1.Controls.Add(this.btnStart);
             this.uiGroupBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -73,35 +73,32 @@ namespace Syrinx
             this.uiGroupBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiGroupBox1.Name = "uiGroupBox1";
             this.uiGroupBox1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            this.uiGroupBox1.Size = new System.Drawing.Size(415, 79);
+            this.uiGroupBox1.Size = new System.Drawing.Size(454, 79);
             this.uiGroupBox1.TabIndex = 0;
             this.uiGroupBox1.Text = "Service";
             this.uiGroupBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiGroupBox1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // uiLedBulb1
+            // uiLedBulbLocal
             // 
-            this.uiLedBulb1.Color = System.Drawing.Color.Gray;
-            this.uiLedBulb1.Location = new System.Drawing.Point(23, 31);
-            this.uiLedBulb1.Name = "uiLedBulb1";
-            this.uiLedBulb1.Size = new System.Drawing.Size(32, 32);
-            this.uiLedBulb1.TabIndex = 8;
-            this.uiLedBulb1.Text = "uiLedBulb1";
-            this.uiLedBulb1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.uiLedBulbLocal.Color = System.Drawing.Color.Gray;
+            this.uiLedBulbLocal.Location = new System.Drawing.Point(23, 31);
+            this.uiLedBulbLocal.Name = "uiLedBulbLocal";
+            this.uiLedBulbLocal.Size = new System.Drawing.Size(32, 32);
+            this.uiLedBulbLocal.TabIndex = 8;
+            this.uiLedBulbLocal.Text = "uiLedBulb1";
             // 
             // btnStop
             // 
             this.btnStop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStop.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnStop.Location = new System.Drawing.Point(286, 31);
+            this.btnStop.Location = new System.Drawing.Point(350, 31);
             this.btnStop.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(92, 36);
-            this.btnStop.Symbol = 61516;
+            this.btnStop.Symbol = 61517;
             this.btnStop.TabIndex = 7;
             this.btnStop.Text = "Stop";
             this.btnStop.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStop.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnStop.Click += new System.EventHandler(this.BtnStop_Click);
             // 
             // btnStart
@@ -116,7 +113,6 @@ namespace Syrinx
             this.btnStart.TabIndex = 6;
             this.btnStart.Text = "Start";
             this.btnStart.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStart.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // notifyIcon1
@@ -163,38 +159,35 @@ namespace Syrinx
             this.uiGroupBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiGroupBox2.Name = "uiGroupBox2";
             this.uiGroupBox2.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            this.uiGroupBox2.Size = new System.Drawing.Size(414, 147);
+            this.uiGroupBox2.Size = new System.Drawing.Size(453, 147);
             this.uiGroupBox2.TabIndex = 1;
             this.uiGroupBox2.Text = "Printer";
             this.uiGroupBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiGroupBox2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // BtnResetPrinter100100
             // 
             this.BtnResetPrinter100100.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnResetPrinter100100.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.BtnResetPrinter100100.Location = new System.Drawing.Point(204, 68);
+            this.BtnResetPrinter100100.Location = new System.Drawing.Point(238, 68);
             this.BtnResetPrinter100100.MinimumSize = new System.Drawing.Size(1, 1);
             this.BtnResetPrinter100100.Name = "BtnResetPrinter100100";
             this.BtnResetPrinter100100.Size = new System.Drawing.Size(203, 31);
             this.BtnResetPrinter100100.TabIndex = 6;
             this.BtnResetPrinter100100.Text = "Reset 100x100  Label";
             this.BtnResetPrinter100100.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnResetPrinter100100.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.BtnResetPrinter100100.Click += new System.EventHandler(this.BtnResetPrinter100100_Click);
             // 
             // BtnResetPrinter100120
             // 
             this.BtnResetPrinter100120.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnResetPrinter100120.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.BtnResetPrinter100120.Location = new System.Drawing.Point(204, 105);
+            this.BtnResetPrinter100120.Location = new System.Drawing.Point(238, 105);
             this.BtnResetPrinter100120.MinimumSize = new System.Drawing.Size(1, 1);
             this.BtnResetPrinter100120.Name = "BtnResetPrinter100120";
             this.BtnResetPrinter100120.Size = new System.Drawing.Size(203, 31);
             this.BtnResetPrinter100120.TabIndex = 5;
             this.BtnResetPrinter100120.Text = "Reset 100x120  Label";
             this.BtnResetPrinter100120.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnResetPrinter100120.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.BtnResetPrinter100120.Click += new System.EventHandler(this.BtnResetPrinter100120_Click);
             // 
             // BtnResetPrinter8060
@@ -204,11 +197,10 @@ namespace Syrinx
             this.BtnResetPrinter8060.Location = new System.Drawing.Point(11, 105);
             this.BtnResetPrinter8060.MinimumSize = new System.Drawing.Size(1, 1);
             this.BtnResetPrinter8060.Name = "BtnResetPrinter8060";
-            this.BtnResetPrinter8060.Size = new System.Drawing.Size(187, 31);
+            this.BtnResetPrinter8060.Size = new System.Drawing.Size(208, 31);
             this.BtnResetPrinter8060.TabIndex = 4;
             this.BtnResetPrinter8060.Text = "Reset 80x60  Label";
             this.BtnResetPrinter8060.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnResetPrinter8060.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.BtnResetPrinter8060.Click += new System.EventHandler(this.BtnResetPrinter8060_Click);
             // 
             // BtnResetPrinter1565
@@ -218,25 +210,23 @@ namespace Syrinx
             this.BtnResetPrinter1565.Location = new System.Drawing.Point(11, 68);
             this.BtnResetPrinter1565.MinimumSize = new System.Drawing.Size(1, 1);
             this.BtnResetPrinter1565.Name = "BtnResetPrinter1565";
-            this.BtnResetPrinter1565.Size = new System.Drawing.Size(187, 31);
+            this.BtnResetPrinter1565.Size = new System.Drawing.Size(208, 31);
             this.BtnResetPrinter1565.TabIndex = 3;
             this.BtnResetPrinter1565.Text = "Reset 15x65  Barcode";
             this.BtnResetPrinter1565.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnResetPrinter1565.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.BtnResetPrinter1565.Click += new System.EventHandler(this.BtnResetPrinter1565_Click);
             // 
             // btnPrintTestBarcode
             // 
             this.btnPrintTestBarcode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrintTestBarcode.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnPrintTestBarcode.Location = new System.Drawing.Point(204, 31);
+            this.btnPrintTestBarcode.Location = new System.Drawing.Point(238, 31);
             this.btnPrintTestBarcode.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnPrintTestBarcode.Name = "btnPrintTestBarcode";
             this.btnPrintTestBarcode.Size = new System.Drawing.Size(203, 31);
             this.btnPrintTestBarcode.TabIndex = 1;
             this.btnPrintTestBarcode.Text = "Print Test Barcode";
             this.btnPrintTestBarcode.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnPrintTestBarcode.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnPrintTestBarcode.Click += new System.EventHandler(this.BtnPrintTestBarcode_Click);
             // 
             // btnGetPrinter
@@ -246,11 +236,10 @@ namespace Syrinx
             this.btnGetPrinter.Location = new System.Drawing.Point(11, 31);
             this.btnGetPrinter.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnGetPrinter.Name = "btnGetPrinter";
-            this.btnGetPrinter.Size = new System.Drawing.Size(110, 31);
+            this.btnGetPrinter.Size = new System.Drawing.Size(208, 31);
             this.btnGetPrinter.TabIndex = 0;
             this.btnGetPrinter.Text = "Get Printers";
             this.btnGetPrinter.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnGetPrinter.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnGetPrinter.Click += new System.EventHandler(this.BtnGetPrinter_Click);
             // 
             // uiDataGridView1
@@ -259,58 +248,57 @@ namespace Syrinx
             this.uiDataGridView1.AllowUserToDeleteRows = false;
             this.uiDataGridView1.AllowUserToResizeColumns = false;
             this.uiDataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.uiDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.uiDataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.uiDataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.uiDataGridView1.ColumnHeadersHeight = 32;
             this.uiDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.uiDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.portNo,
             this.size,
             this.operation});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.uiDataGridView1.DefaultCellStyle = dataGridViewCellStyle13;
             this.uiDataGridView1.EnableHeadersVisualStyles = false;
             this.uiDataGridView1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiDataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(173)))), ((int)(((byte)(255)))));
             this.uiDataGridView1.Location = new System.Drawing.Point(5, 284);
             this.uiDataGridView1.Name = "uiDataGridView1";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.uiDataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.uiDataGridView1.RowTemplate.Height = 25;
             this.uiDataGridView1.ScrollBarRectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiDataGridView1.SelectedIndex = -1;
-            this.uiDataGridView1.Size = new System.Drawing.Size(414, 83);
+            this.uiDataGridView1.Size = new System.Drawing.Size(453, 83);
             this.uiDataGridView1.TabIndex = 2;
-            this.uiDataGridView1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiDataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UiDataGridView1_CellClick);
             // 
             // portNo
@@ -323,6 +311,7 @@ namespace Syrinx
             // 
             this.size.HeaderText = "Size";
             this.size.Name = "size";
+            this.size.Width = 160;
             // 
             // operation
             // 
@@ -332,7 +321,7 @@ namespace Syrinx
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(423, 370);
+            this.ClientSize = new System.Drawing.Size(462, 370);
             this.Controls.Add(this.uiDataGridView1);
             this.Controls.Add(this.uiGroupBox2);
             this.Controls.Add(this.uiGroupBox1);
@@ -361,7 +350,7 @@ namespace Syrinx
         private Sunny.UI.UISymbolButton btnStop;
         private Sunny.UI.UISymbolButton btnStart;
         private Sunny.UI.UIGroupBox uiGroupBox2;
-        private Sunny.UI.UILedBulb uiLedBulb1;
+        private Sunny.UI.UILedBulb uiLedBulbLocal;
         private Sunny.UI.UIButton btnGetPrinter;
         private Sunny.UI.UIDataGridView uiDataGridView1;
         private Sunny.UI.UIButton btnPrintTestBarcode;
